@@ -1,0 +1,363 @@
+\documentclass{article}
+% Commands
+\newcommand{\ASSNMT}{Project Necromancer}
+\newcommand{\CLASS}{Design Presentation Handout}
+\newcommand{\Footer}{Grand Valley State University}
+
+\newcommand{\DATE}{April 2015}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{pdflscape}
+\usepackage{geometry}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage[justification=centering]{caption}
+\usepackage{amssymb}
+\usepackage[pdftex, pdfborderstyle={/S/U/W 0}]{hyperref} % this disables the boxes around links]
+\usepackage{float}
+\usepackage{listings}
+% \usepackage{color}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\numberwithin{figure}{section}
+\usepackage{amsmath}
+
+\numberwithin{equation}{section}
+% lstlisting
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset
+{
+  frame=single,
+  frameround=tttt,
+  language=C,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  tabsize=3,
+  breaklines=true,
+  basicstyle={\small\ttfamily},
+  xleftmargin=\fboxsep,
+  xrightmargin=-\fboxsep,
+  numbers = left,
+  stepnumber = 5,
+  firstnumber = 1
+}
+
+% macro for appendix to be printed as "Appendix A {name of appendix}"
+% instead of "A {name of appendix}"
+% From: http://tex.stackexchange.com/questions/160839/having-appendix-a-instead-of-a-appendix
+\makeatletter
+%% The "\@seccntformat" command is an auxiliary command
+%% (see pp. 26f. of 'The LaTeX Companion,' 2nd. ed.)
+\def\@seccntformat#1{\@ifundefined{#1@cntformat}%
+   {\csname the#1\endcsname\quad}  % default
+   {\csname #1@cntformat\endcsname}% enable individual control
+}
+\let\oldappendix\appendix %% save current definition of \appendix
+\renewcommand\appendix{%
+    \oldappendix
+    \newcommand{\section@cntformat}{\appendixname~\thesection\quad}
+}
+\makeatother
+
+
+\begin{document}
+% =====----- Initial Set Up -----=====
+% Title Page
+\newgeometry{top=2cm,left=1cm,bottom=1cm,right=1cm}
+\begin{flushleft}
+\pagenumbering{gobble}
+
+\textsc{\LARGE \bfseries \ASSNMT}\\
+
+\textsc{\Large \CLASS}\\[0.2cm]
+\linethickness{0.5mm}
+{\color{ForestGreen}\line(1,0){350}} \\ [1.0cm]
+
+\begin{flushleft} \large
+\begin{tabular}{lll}
+  Sponsored By: & The Rainforest Connection (RFCx) \includegraphics[height=0.4cm]{rfcxlogo} & \\
+                &               & \\
+  Submitted By: & Joe Gibson    & \href{mailto:gibsjose@mail.gvsu.edu}{gibsjose@mail.gvsu.edu}\\
+              & David Adlof     & \href{mailto:adlofd@mail.gvsu.edu}{adlofd@mail.gvsu.edu}\\
+              & Kalee Stutzman  & \href{mailto:stutzmak@mail.gvsu.edu}{stutzmak@mail.gvsu.edu}\\
+              & Jesse Millwood  & \href{mailto:millwooj@mail.gvsu.edu}{millwooj@mail.gvsu.edu}\\
+\end{tabular}
+
+\bigskip
+
+\bigskip
+Date Submitted: \DATE
+\end{flushleft}
+
+\smallskip
+{\color{ForestGreen}\line(1,0){350}} \\ [1.0cm]
+
+\vfill
+
+% Bottom of the page
+\begin{center}
+{\large \Footer}
+\end{center}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.1\textwidth]{small_gvsu}
+\end{figure}
+\end{flushleft}
+\restoregeometry
+\newpage
+% Define Page Geometry for rest of report
+{\newgeometry{left=0.8in, right=0.8in, top=1in, bottom=1in}
+% Page Numbers
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\ASSNMT}
+\rhead{\leftmark}
+\rfoot{Page \thepage}
+% No paragraph indents
+\setlength{\parindent}{0cm}
+% =====----- Rest of Report -----=====
+\newpage
+
+\section{Rainforest Connection}
+\subsection{Organization - RFCx}
+\begin{itemize}
+    \item Non-profit organization based out of San Francisco
+    \item Goal: stop illegal deforestation through repurposed Android phones
+    \item Projects:
+    \begin{itemize}
+        \item Borneo
+        \item Cameroon
+        \item Brazil \textbf{*}
+        \item Ecuador
+    \end{itemize}
+\end{itemize}
+
+\subsection{Device - RFCx Guardian}
+\begin{itemize}
+    \item Constantly records audio and sends to server about every 1.5 minutes and/or when it achieves the best GSM connection
+    \item RFCx can detect the sound of \textbf{chainsaws, car/truck engines, and motorcycle engines} with DSP algorithms running on server
+    \item Real-time alerts can be sent to ground patrols
+
+    \textbf{AND/OR}
+
+    \item Data can be collected and analyzed daily/weekly to prepare a large-scale intervention
+\end{itemize}
+
+\subsection{Current Device}
+\begin{itemize}
+    \item 2 x 4400mAh batteries
+    \item 1 x Android phone
+    \item 4 x Custom solar panels
+    \item 1 x Radioshack enclosure
+    \item 1 x Adafruit solar Lithium-Ion battery charger
+    \item 1 x External microphone
+    \item 1 x External GSM antenna
+\end{itemize}
+
+\subsection{Current Device Problems}
+\begin{itemize}
+    \item Modularity of electrical components
+    \item Power consumption
+    \item Heat
+    \item No diagnostics
+\end{itemize}
+
+\newpage
+
+\section{Requirements}
+\subsection{Hardware}
+\begin{itemize}
+    \item Reduce power consumption
+    \item Consolidate all electrical components to single PCB
+    \item Simple assembly process
+    \item Low-power MCU on PCB
+    \item Monetary cost should not be more than \$250
+\end{itemize}
+
+\subsection{Software}
+\begin{itemize}
+    \item Microcontroller sends diagnostics to Android phone
+    \begin{itemize}
+        \item Power
+        \item Temperature
+        \item Humidity
+        \item Solar/battery status
+    \end{itemize}
+    \item MCU programmable via header on PCB
+    \item Android companion app (RFCx Sentinel) to report diagnostics
+    \item (Possibly) Investigate alternative audio compression schemes
+\end{itemize}
+
+\section{Design}
+\subsection{Power}
+\subsubsection{MPPT - SPV1040}
+\begin{itemize}
+    \item Max Point Power Tracker
+    \item Ensures solar panels are outputting maximum power
+    \item Different MPPT configurations possible
+\end{itemize}
+
+\subsubsection{5V and 3.3V Regulation - LMR6142B and SM72238}
+\begin{itemize}
+    \item 5V: Phone and battery charger
+    \item 3.3V: I2C bus, MCU, various ICs
+\end{itemize}
+
+\subsubsection{Battery Management - BQ2057CTS}
+\begin{itemize}
+    \item Prevent batteries from overcharging/overheating
+    \item Single and dual-cell Li-Ion batteries
+    \item IV regulation, charge status, charge rate auto compensation
+\end{itemize}
+
+\subsubsection{Power Path Management - LTC4412}
+\begin{itemize}
+    \item Select between power sources (solar panels and Li-Ion batteries)
+    \item Load sharing between sources
+    \item LTC4412: Clean switch between sources
+\end{itemize}
+
+\subsection{Microcontroller - ATmega328P}
+\begin{itemize}
+    \item Low power
+    \item I2C interface
+    \item Easy/inexpensive to program
+    \item Community support
+    \item Physical package
+    \item \textbf{ATmega328P}
+\end{itemize}
+
+\subsection{USB - FT230X FTDI}
+\begin{itemize}
+    \item Diagnostics: Microcontoller --> Android Phone
+    \item UART to USB
+    \item Android app must interface with FTDI/USB
+\end{itemize}
+
+\section{Diagnostics}
+\subsection{ADC - ADS1015}
+\begin{itemize}
+    \item ATmega328P ADC has poor resolution
+    \item Only six total analog pins
+    \item ADS1015: I2C communication, 12-bit, low-power
+\end{itemize}
+
+\subsection{Input/Output Power - LTC6800}
+\begin{itemize}
+    \item Sense resistor for current sensing
+    \item Must amplify current sense voltage: LTC6800 instrumentation opamp
+\end{itemize}
+
+\subsection{Temperature - LM75BD and HIH6130}
+\begin{itemize}
+    \item LM75BD: Only temperature, $\pm2^{\circ} C$, \$0.60
+    \item HIH6130: Temp + Humidity, $\pm1^{\circ} C$, $\pm5\% RH$, \$14
+    \item \textbf{Both} included on board as option
+\end{itemize}
+
+\section{Android - RFCx Sentinel}
+\begin{itemize}
+    \item Open source Android \textit{usb-serial-for-android} library supports FTDI
+    \item Diagnostics displayed to screen
+    \item Currently used for testing/debugging
+    \item Could send diagnostics to RFCx server
+\end{itemize}
+
+\section{Enclosure}
+\begin{itemize}
+    \item Secure PCB, phone, batteries
+    \item External connection to solar panels, microphone, antenna
+\end{itemize}
+
+\section{Heat Dissipation}
+\begin{itemize}
+    \item Drilling holes: \textbf{dust, water, bugs}
+    \item Fans: \textbf{Fan noise similar pattern to chainsaws}
+    \item \textbf{Heatsink}: Direct thermal connection to phone and protrudes through enclosure
+\end{itemize}
+
+\section{GSM Interference}
+\begin{itemize}
+    \item 217Hz TDMA noise introduced in audio signal
+    \item Special X2Y capacitors created to filter GSM TDMA noise
+\end{itemize}
+
+\section{Budget}
+\begin{itemize}
+    \item \$400 = 4 x \$100 for PCB manufacturing
+    \item \$320 = 4 x \$80 for PCB components
+    \item \$200 = 1 x \$200 for general needs
+    \item Estimated total: \textbf{\$920}
+
+    \item Funding: matched \$500 funding between GVSU and RFCx
+\end{itemize}
+
+\end{document}
+
+% ======== For Reference =============
+% H parameter for the figure environment
+% keeps it from floating
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{FIG2_1b}
+	\caption{Convolution of Identical Unit Step Sequences}
+	\label{fig:21b}
+\end{figure}
+% To turn off caption numbering place this:
+%\captionsetup[figure]{labelformat=empty}
+% Before the figure, To turn back on:
+%captionsetup[figure]{labelformat=default}
+\begin{equation}
+	\begin{array}{rcl}
+
+	y[n] &=& 0.5x[n]+x[n-1]+2x[n-2]\\
+	y[n] &=& 0.8y[n-1]+2x[n]\\
+	y[n]-0.8y[n-1] &=& 2x[n-1]
+	\end{array}
+\end{equation}
+
+\begin{subequations}
+	\begin{align}
+		h[n] &= 2\delta[n+1]-2\delta[n-1]\\
+		x[n] &= \delta[n] + \delta[n-2]
+	\end{align}
+\end{subequations}
+
+% Resize used to make table width of text, may be omitted
+\begin{table}[h]
+\resizebox{\textwidth}{!}{
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Case & $Z_c$          & $l$           & $c$       \\ \hline
+1    & $110.9 \Omega$ & 0.593 $\mu H$ & 0.048 nF  \\ \hline
+2    & $171.3 \Omega$ & 0.803 $\mu H$  & 27.408 pF \\ \hline
+3    & $327.3 \Omega$ & 1.102 $\mu H$  & 10.294 pF \\ \hline
+\end{tabular}}
+\caption{Calculated Parameters}
+\label{tbl:calcd}
+\end{table}
+
+% Code Snippet:
+\begin{lstlisting}[language=C,label=lala,caption=this thing]
+  code snippet
+\end{lstlisting}
+
+% bulleted list
+\begin{itemize}
+\item this is an item
+\end{itemize}
+
+\renewcommand*\contentsname{ }
+\tableofcontents
+\listoffigures

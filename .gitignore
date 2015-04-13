@@ -1,0 +1,22 @@
+
+# File Extentions
+*.log
+*.aux
+*.out
+*#
+*.#
+*~
+# Directories
+auto/
+=======
+#Ignore temp files
+*~
+
+#Ignore PDF
+DesignDoc.pdf
+
+#Ignore Table of contents file
+DesignDoc.toc
+
+#Ignore Merge Stuff
+*.orig
